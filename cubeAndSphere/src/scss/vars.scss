@@ -1,0 +1,177 @@
+/*--------------- page -------------*/
+$page-width: 1920px;
+$container-padding: 15px;
+$container-width: 1200px;
+
+/*--------------- font -------------*/
+$font-primary: 'Roboto',
+sans-serif;
+$font-size: 14;
+$font-size-desk: 42;
+
+@mixin adaptive-value($mob-val, $desk-val, $prop) {
+	@if $prop==lh {
+		line-height: calc(#{$mob-val + px} + (#{$desk-val} - #{$mob-val}) * ((100vw - 320px) / (#{$page-width} - 320)));
+	}
+
+	@if $prop==fz {
+		font-size: calc(#{$mob-val + px} + (#{$desk-val} - #{$mob-val}) * ((100vw - 320px) / (#{$page-width} - 320)));
+	}
+}
+
+/*--------------- colors -------------*/
+$primary-color: #3B3D46;
+$secondary-color: #00B4E3;
+$grey-color: #E6E6E6;
+$light-blue-color: #F1F7F8;
+$light-blue-sec-color: #F4F9F9;
+
+$bg-color: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+
+$star-color:#ffb400;
+
+@function svg-color($color) {
+	@return '%23'+str-slice('#{$color}', 2, -1);
+}
+
+/*--------------- media -------------*/
+$first-point: 568px; //xxs
+$second-point: 667px; //xs
+$third-point: 768px; //sm
+$fourth-point: 1024px; //md
+$fifth-point: 1366px; //xl
+$sixth-point: 1440px; //lg
+
+@mixin respond-from($point) {
+
+	// xxs
+	@if $point==xxs {
+		@media only screen and (min-width: $first-point) {
+			@content;
+		}
+	}
+
+	@else if $point==to-xxs {
+		@media only screen and (max-width: ($first-point - 1px)) {
+			@content;
+		}
+	}
+
+	@else if $point==xxs-xs {
+		@media only screen and (min-width: $first-point) and (max-width: ($second-poin - 1px)) {
+			@content;
+		}
+	}
+
+	// xs
+	@else if $point==xs {
+		@media only screen and (min-width: $second-point) {
+			@content;
+		}
+	}
+
+	@else if $point==to-xs {
+		@media only screen and (max-width: ($second-point - 1px)) {
+			@content;
+		}
+	}
+
+	@else if $point==xs-sm {
+		@media only screen and (min-width: $second-point) and (max-width: ($third-point - 1px)) {
+			@content;
+		}
+	}
+
+	// sm
+	@else if $point==sm {
+		@media only screen and (min-width: $third-point) {
+			@content;
+		}
+	}
+
+	@else if $point==to-sm {
+		@media only screen and (max-width: ($third-point - 1px)) {
+			@content;
+		}
+	}
+
+	@else if $point==sm-md {
+		@media only screen and (min-width: $third-point) and (max-width: ($fourth-point - 1px)) {
+			@content;
+		}
+	}
+
+	// md
+	@else if $point==md {
+		@media only screen and (min-width: $fourth-point) {
+			@content;
+		}
+	}
+
+	@else if $point==to-md {
+		@media only screen and (max-width: ($fourth-point - 1px)) {
+			@content;
+		}
+	}
+
+	@else if $point==md-xl {
+		@media only screen and (min-width: $fourth-point) and (max-width: ($fifth-point - 1px)) {
+			@content;
+		}
+	}
+
+	// xl
+	@else if $point==xl {
+		@media only screen and (min-width: ($fifth-point - 1px)) {
+			@content;
+		}
+	}
+
+	@else if $point==to-xl {
+		@media only screen and (max-width: ($fifth-point - 1px)) {
+			@content;
+		}
+	}
+
+	@else if $point==xl-lg {
+		@media only screen and (min-width: $fifth-point) and (max-width: ($sixth-point - 1px)) {
+			@content;
+		}
+	}
+
+	// lg
+	@else if $point==lg {
+		@media only screen and (min-width: ($sixth-point - 1px)) {
+			@content;
+		}
+	}
+
+	@else if $point==to-lg {
+		@media only screen and (max-width: ($sixth-point - 1px)) {
+			@content;
+		}
+	}
+
+	@else if $point==full {
+		@media only screen and (min-width: $container-width) {
+			@content;
+		}
+	}
+
+	@else if $point==to-full {
+		@media only screen and (max-width: ($container-width - 1px)) {
+			@content;
+		}
+	}
+}
+
+// Animations
+@keyframes widthScale {
+	0% {
+		width: 0%;
+	}
+
+	100% {
+		width: 100%;
+	}
+}

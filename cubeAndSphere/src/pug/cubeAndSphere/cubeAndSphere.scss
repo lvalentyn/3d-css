@@ -1,0 +1,234 @@
+@import '../../scss/vars';
+$value: 25vw;
+$cube-size: 2em;
+$rotate-speed: 40s;
+
+.cube-and-sphere {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color: black;
+	font-size: 6vw;
+
+	.wrap {
+		flex-basis: 100%;
+		margin: 20vw 0;
+		perspective: 10em;
+		perspective-origin: 50% calc(50% - 2em);
+	}
+
+	.scene {
+		position: relative;
+		transform-style: preserve-3d;
+
+		&.animation {
+			animation: sceneRotate $rotate-speed linear infinite;
+
+			@keyframes sceneRotate {
+				100% {
+					transform: rotateY(360deg) rotateX(10deg);
+				}
+			}
+		}
+
+	}
+
+	.sphere {
+		width: 1em;
+		height: 1em;
+		border-radius: 50%;
+
+		background-image: radial-gradient(circle at top, rgb(80, 133, 255), 30%, #000);
+		opacity: .8;
+
+
+		position: absolute;
+		left: -.5em;
+		bottom: 1em;
+
+		&.animation {
+			animation: ballBounse 8s ease-out infinite, sceneRotate $rotate-speed linear infinite reverse;
+
+			@keyframes ballBounse {
+				0% {
+					bottom: .5em;
+				}
+
+				25% {
+					bottom: 3em;
+					animation-timing-function: ease-in;
+				}
+
+				50% {
+					bottom: -1em;
+				}
+
+				75% {
+					bottom: 3em;
+					animation-timing-function: ease-in;
+				}
+
+				100% {
+					bottom: .5em;
+				}
+
+			}
+		}
+
+	}
+
+	.sphere-shadow {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		background-image: radial-gradient(#0007, #0000 50%);
+
+		&.animation {
+			animation: ballShadow 8s linear infinite;
+
+			@keyframes ballShadow {
+				0% {
+					transform: translateX(0em);
+					transform: scale(1);
+					opacity: 1;
+				}
+
+				25% {
+					transform: translateX(-2em);
+				}
+
+				50% {
+					transform: translateX(0em);
+					transform: scale(1.4);
+					opacity: 0;
+				}
+
+				75% {
+					transform: translateX(-2em);
+					opacity: 0;
+				}
+
+				100% {
+					transform: translateX(0em);
+					transform: scale(1);
+					opacity: 1;
+				}
+			}
+		}
+
+	}
+
+	.cube {
+		width: $cube-size;
+		height: $cube-size;
+		transform-style: preserve-3d;
+
+		position: absolute;
+		bottom: -1em;
+		left: -1em;
+
+		&.animation {
+			animation: cubeHeight 8s linear infinite;
+
+			@keyframes cubeHeight {
+
+				0% {
+					height: 1.5em;
+				}
+
+				8% {
+					height: 2em;
+				}
+
+				97% {
+					height: 2em;
+				}
+
+				100% {
+					height: 1.5em;
+				}
+			}
+		}
+
+		.front,
+		.back,
+		.left,
+		.right {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			background-color: #0b8ac17a;
+			box-shadow: 0 0 .5em #000a inset;
+		}
+
+		.front {
+			transform: translateZ(calc($cube-size / 2));
+		}
+
+		.back {
+			transform: rotateY(90deg * 2) translateZ(calc($cube-size / 2));
+		}
+
+		.left {
+			transform: rotateY(90deg * 3) translateZ(calc($cube-size / 2));
+		}
+
+		.right {
+			transform: rotateY(90deg) translateZ(calc($cube-size / 2));
+		}
+
+		.top {
+			box-shadow: 0 0 .5em #000a inset;
+			background-color: #0b8ac17a;
+			position: absolute;
+			overflow: hidden;
+			width: 2em;
+			height: 2em;
+			transform: translateY(-50%) rotateX(90deg);
+
+			&.animation {
+				animation: topOpen 8s linear infinite;
+
+				@keyframes topOpen {
+
+					0%,
+					100% {
+						transform: translateY(-50%) rotateX(90deg) translateX(0);
+					}
+
+					50% {
+						transform: translateY(-50%) rotateX(90deg) translateX(2em);
+					}
+				}
+			}
+
+		}
+
+		.bottom {
+			position: absolute;
+			width: 2em;
+			height: 2em;
+			bottom: 0;
+			background-color: #0007;
+			box-shadow: 0 0 .5em #000;
+
+			transform: translateY(50%) rotateX(90deg);
+		}
+	}
+
+	.floor {
+		width: 8em;
+		height: 8em;
+		border-radius: 50%;
+		background-image:
+			radial-gradient(#0001, #000 75%), repeating-conic-gradient(from 45deg, #111 0deg 90deg, #222 90deg 180deg);
+		background-size: 100%, 1em 1em;
+
+		position: absolute;
+		top: 1em;
+		transform: translate(-50%, -50%) rotateX(90deg);
+	}
+
+}
