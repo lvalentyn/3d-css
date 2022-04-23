@@ -71,10 +71,10 @@ $rotate-speed: 40s;
 		background-image: radial-gradient(circle at top, rgb(80, 133, 255), 30%, #000);
 		opacity: .8;
 
-
 		position: absolute;
 		left: -.5em;
 		bottom: 1em;
+		transition: transform .3s linear;
 
 		&.animation {
 			animation: ballBounse 8s ease-out infinite, sceneRotate $rotate-speed linear infinite reverse;

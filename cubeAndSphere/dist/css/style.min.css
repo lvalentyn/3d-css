@@ -569,6 +569,7 @@ h2 {
   position: absolute;
   left: -0.5em;
   bottom: 1em;
+  transition: transform 0.3s linear;
 }
 .cube-and-sphere .sphere.animation {
   animation: ballBounse 8s ease-out infinite, sceneRotate 40s linear infinite reverse;
