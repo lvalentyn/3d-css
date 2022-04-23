@@ -423,6 +423,7 @@ body {
   font-family: "Roboto", sans-serif;
   color: #fff;
   background-color: #000;
+  overflow-x: hidden;
 }
 
 .page {
@@ -473,6 +474,17 @@ button {
 h2 {
   font-size: 30px;
 }
+
+@media only screen and (max-width: 1199px) {
+  .hide-to-full {
+    display: none !important;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .hide-full {
+    display: none !important;
+  }
+}
 /*--------------- page -------------*/
 /*--------------- font -------------*/
 /*--------------- colors -------------*/
@@ -506,8 +518,31 @@ h2 {
   color: black;
   font-size: 6vw;
 }
+.cube-and-sphere .controls {
+  width: 100vw;
+  position: absolute;
+  left: -45vw;
+  top: -10vw;
+  color: #fff;
+  font-size: 20px;
+  z-index: 100;
+}
+.cube-and-sphere .controls .key {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  margin: 10px;
+  border: 2px solid #f1f1f1;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(calc(90deg * var(--i)));
+}
 .cube-and-sphere .wrap {
-  flex-basis: 100%;
+  display: flex;
   margin: 20vw 0;
   perspective: 10em;
   perspective-origin: 50% calc(50% - 2em);
@@ -515,6 +550,7 @@ h2 {
 .cube-and-sphere .scene {
   position: relative;
   transform-style: preserve-3d;
+  transition: transform 0.3s linear;
 }
 .cube-and-sphere .scene.animation {
   animation: sceneRotate 40s linear infinite;
@@ -674,4 +710,13 @@ h2 {
   position: absolute;
   top: 1em;
   transform: translate(-50%, -50%) rotateX(90deg);
+}
+
+@media only screen and (max-width: 1199px) {
+  .key {
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 448 512'%3E%3Cpath d='M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z'/%3E%3C/svg%3E") center/cover no-repeat;
+  }
+  .key--refresh {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 512 512'%3E%3C!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --%3E%3Cpath d='M496 48V192c0 17.69-14.31 32-32 32H320c-17.69 0-32-14.31-32-32s14.31-32 32-32h63.39c-29.97-39.7-77.25-63.78-127.6-63.78C167.7 96.22 96 167.9 96 256s71.69 159.8 159.8 159.8c34.88 0 68.03-11.03 95.88-31.94c14.22-10.53 34.22-7.75 44.81 6.375c10.59 14.16 7.75 34.22-6.375 44.81c-39.03 29.28-85.36 44.86-134.2 44.86C132.5 479.9 32 379.4 32 256s100.5-223.9 223.9-223.9c69.15 0 134 32.47 176.1 86.12V48c0-17.69 14.31-32 32-32S496 30.31 496 48z'/%3E%3C/svg%3E");
+  }
 }

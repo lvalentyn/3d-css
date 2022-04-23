@@ -13,6 +13,7 @@ body {
 	font-family: $font-primary;
 	color: #fff;
 	background-color: #000;
+	overflow-x: hidden;
 }
 
 .page {
@@ -63,4 +64,17 @@ button {
 
 h2 {
 	font-size: 30px;
+}
+
+
+@include respond-from(to-full) {
+	.hide-to-full {
+		display: none !important;
+	}
+}
+
+@include respond-from(full) {
+	.hide-full {
+		display: none !important;
+	}
 }

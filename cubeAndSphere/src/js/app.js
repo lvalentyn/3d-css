@@ -4,19 +4,38 @@ import * as flsFunction from "./modules/functions.js";
 window.addEventListener('DOMContentLoaded', () => {
 	'use strict';
 
-	const h = document.querySelector("#mouseRotate");
-	const b = document.body;
+	const scene = document.querySelector(".js-rotate");
 
-	let base = (e) => {
-		var x = e.pageX / window.innerWidth - 0.5;
-		var y = e.pageY / window.innerHeight - 0.5;
-		h.style.transform = `
-        rotateX(${y * 50 + 170}deg)
-        rotateZ(${-x * 150 + 180}deg)
-	`;
+	let step = 10
+	let axiosY = 0
+	let axiosX = 0
+
+	function objectRotate(e) {
+		if (e.key === 'a' || e.target.classList.contains('js-left-btn')) {
+			axiosY -= step
+			scene.style.transform = `rotateY(${axiosY}deg) rotateX(${axiosX}deg)`
+		}
+		if (e.key === 'd' || e.target.classList.contains('js-right-btn')) {
+			axiosY += step
+			scene.style.transform = `rotateY(${axiosY}deg) rotateX(${axiosX}deg)`
+		}
+		if (e.key === 'w' || e.target.classList.contains('js-top-btn')) {
+			axiosX -= step
+			scene.style.transform = `rotateY(${axiosY}deg) rotateX(${axiosX}deg)`
+		}
+		if (e.key === 's' || e.target.classList.contains('js-bottom-btn')) {
+			axiosX += step
+			scene.style.transform = `rotateY(${axiosY}deg) rotateX(${axiosX}deg)`
+		}
+		if (e.key === 'r' || e.target.classList.contains('js-refresh-btn')) {
+			axiosX = 0
+			axiosY = 0
+			scene.style.transform = `rotateY(${axiosY}deg) rotateX(${axiosX}deg)`
+		}
 	}
 
-	b.addEventListener("pointermove", base);
+	document.addEventListener('click', objectRotate)
+	document.addEventListener('keydown', objectRotate)
 	// for create webP dublicate
 	flsFunction.isWebp();
 
