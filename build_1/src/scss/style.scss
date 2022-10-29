@@ -1,0 +1,48 @@
+@import 'fonts';
+@import 'vars';
+@import '../../node_modules/modern-normalize/modern-normalize';
+
+html {
+	font-size: $font-size + px;
+	line-height: 1.5em;
+}
+
+body {
+	margin: 0;
+	font-family: $font-primary;
+	color: #fff;
+	background-color: #dedad3;
+	overflow-x: hidden;
+}
+
+.page {
+	display: flex;
+	flex-direction: column;
+	width: 100vw;
+	height: 100vh;
+}
+
+.section {
+	display: flex;
+	height: 100%;
+	padding: 40px 0;
+}
+
+.container {
+	width: 100%;
+	max-width: $container-width;
+	padding: 0 $container-padding;
+	margin: auto;
+}
+
+@include maxW($md) {
+	.hide-to-full {
+		display: none !important;
+	}
+}
+
+@include minW($md) {
+	.hide-full {
+		display: none !important;
+	}
+}

@@ -1,0 +1,33 @@
+mixin figure-cube(props={})
+	.figure--cube(class=`${props.class ? props.class : ''}`)
+		.side-top
+		.side-right
+		.side-bottom
+		.side-left
+		.side-front
+		.side-back
+
+section.house
+	.wrap
+		.controls 
+			.title Press
+				br/ for moving
+			.key-box
+				.key(style='--i:0;').js-top-btn.hide-full
+				.key.hide-to-full W
+			.key-box
+				.key(style='--i:1;').js-right-btn.hide-full
+				.key.hide-to-full D
+			.key-box
+				.key(style='--i:3;').js-left-btn.hide-full
+				.key.hide-to-full A
+			.key-box
+				.key(style='--i:2;').js-bottom-btn.hide-full
+				.key.hide-to-full S
+			.key-box
+				.key.key--refresh.js-refresh-btn.hide-full
+				.key.hide-to-full R
+		.scene.js-rotate
+			+figure-cube({
+				class: 'floor'
+			})

@@ -1,0 +1,205 @@
+@import '../../scss/vars';
+$value: 25vw;
+$cube-size: 2em;
+$rotate-speed: 40s;
+
+
+$floor-size: 6em;
+$floor-height: calc($floor-size / 24);
+
+.house {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color: black;
+	font-size: 6vw;
+
+	.controls {
+		width: 100vw;
+		position: absolute;
+		left: -45vw;
+		top: -10vw;
+		color: #fff;
+		font-size: 20px;
+		z-index: 100;
+
+		.key {
+			position: relative;
+			width: 30px;
+			height: 30px;
+			margin: 10px;
+			border: 2px solid #f1f1f1;
+			border-radius: 8px;
+			cursor: pointer;
+			color: #fff;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			transform: rotate(calc(90deg * var(--i)));
+
+		}
+	}
+
+	.wrap {
+		display: flex;
+		margin: 20vw 0;
+		perspective: 10em;
+		perspective-origin: 50% calc(50% - 2em);
+	}
+
+	.scene {
+		position: relative;
+		transform-style: preserve-3d;
+		transform: rotateY(-45deg) rotateX(-10deg) rotateZ(10deg);
+		transition: transform .3s linear;
+	}
+
+	.cube {
+		width: $cube-size;
+		height: $cube-size;
+		transform-style: preserve-3d;
+
+		position: absolute;
+		bottom: -1em;
+		left: -1em;
+
+		.front,
+		.back,
+		.left,
+		.right {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			background-color: #0b8ac17a;
+			box-shadow: 0 0 .5em #000a inset;
+		}
+
+		.front {
+			transform: translateZ(calc($cube-size / 2));
+		}
+
+		.back {
+			transform: rotateY(90deg * 2) translateZ(calc($cube-size / 2));
+		}
+
+		.left {
+			transform: rotateY(90deg * 3) translateZ(calc($cube-size / 2));
+		}
+
+		.right {
+			transform: rotateY(90deg) translateZ(calc($cube-size / 2));
+		}
+
+		.top {
+			box-shadow: 0 0 .5em #000a inset;
+			background-color: #0b8ac17a;
+			position: absolute;
+			overflow: hidden;
+			width: 2em;
+			height: 2em;
+			transform: translateY(-50%) rotateX(90deg);
+
+			&.animation {
+				animation: topOpen 8s linear infinite;
+
+				@keyframes topOpen {
+
+					0%,
+					100% {
+						transform: translateY(-50%) rotateX(90deg) translateX(0);
+					}
+
+					50% {
+						transform: translateY(-50%) rotateX(90deg) translateX(2em);
+					}
+				}
+			}
+
+		}
+
+		.bottom {
+			position: absolute;
+			width: 2em;
+			height: 2em;
+			bottom: 0;
+			background-color: #0007;
+			box-shadow: 0 0 .5em #000;
+
+			transform: translateY(50%) rotateX(90deg);
+		}
+	}
+
+	.floor {
+		width: $floor-size;
+		height: $floor-size;
+
+		position: absolute;
+		top: 1em;
+		transform: translate(-50%, -50%) rotateX(90deg);
+		transform-style: preserve-3d;
+
+		.side-front,
+		.side-back,
+		.side-left,
+		.side-right {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: $floor-height;
+			background-color: $floor-color-main;
+			box-shadow: 0 .1em .2em #000a inset;
+		}
+
+		.side-front {
+			transform: rotateZ(90deg * 0) rotateX(90deg) translateZ(calc(($floor-size - $floor-height / 2) * -1)) translateY(calc($floor-height / -2)) translateX(0);
+		}
+
+		.side-back {
+			transform: rotateZ(90deg * 0) rotateX(90deg) translateZ(calc($floor-height / 2)) translateY(calc($floor-height / -2)) translateX(0);
+		}
+
+		.side-left {
+			transform: rotateZ(90deg) rotateX(90deg) translateZ(calc($floor-size / 2)) translateY(calc($floor-height / -2)) translateX(calc($floor-size / 2 - $floor-height / 2));
+		}
+
+		.side-right {
+			transform: rotateZ(90deg) rotateX(90deg) translateZ(calc($floor-size / -2)) translateY(calc($floor-height / -2)) translateX(calc($floor-size / 2 - $floor-height / 2));
+		}
+
+		.side-top {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+
+			background-image: repeating-linear-gradient(90deg, #4c4a42 0%, #000 2%, #000 2%, #4c4a42 4%, #4c4a42 25%);
+    		background-size: calc($floor-size / 6);
+		}
+
+		.side-bottom {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			bottom: 0;
+			background-color: $floor-color-main;
+
+			transform: translateZ(calc($floor-height * -1));
+		}
+	}
+
+}
+
+
+
+@include maxW($md) {
+	.key {
+		background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 448 512'%3E%3Cpath d='M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z'/%3E%3C/svg%3E") center / cover no-repeat;
+
+		&--refresh {
+			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 512 512'%3E%3C!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --%3E%3Cpath d='M496 48V192c0 17.69-14.31 32-32 32H320c-17.69 0-32-14.31-32-32s14.31-32 32-32h63.39c-29.97-39.7-77.25-63.78-127.6-63.78C167.7 96.22 96 167.9 96 256s71.69 159.8 159.8 159.8c34.88 0 68.03-11.03 95.88-31.94c14.22-10.53 34.22-7.75 44.81 6.375c10.59 14.16 7.75 34.22-6.375 44.81c-39.03 29.28-85.36 44.86-134.2 44.86C132.5 479.9 32 379.4 32 256s100.5-223.9 223.9-223.9c69.15 0 134 32.47 176.1 86.12V48c0-17.69 14.31-32 32-32S496 30.31 496 48z'/%3E%3C/svg%3E");
+		}
+	}
+}
