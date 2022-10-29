@@ -4,6 +4,12 @@ $cube-size: 2em;
 $rotate-speed: 40s;
 
 
+$frame-size: 4em;
+$frame-height: calc($frame-size / 2);
+
+$leg-size: .25em;
+$leg-height: calc($frame-size / 8);
+
 $floor-size: 6em;
 $floor-height: calc($floor-size / 24);
 
@@ -17,10 +23,12 @@ $floor-height: calc($floor-size / 24);
 	font-size: 6vw;
 
 	.controls {
-		width: 100vw;
 		position: absolute;
 		left: -45vw;
 		top: -10vw;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
 		color: #fff;
 		font-size: 20px;
 		z-index: 100;
@@ -57,89 +65,165 @@ $floor-height: calc($floor-size / 24);
 		transition: transform .3s linear;
 	}
 
-	.cube {
-		width: $cube-size;
-		height: $cube-size;
-		transform-style: preserve-3d;
+	.frame {
+		width: $frame-size;
+		height: $frame-size;
 
 		position: absolute;
-		bottom: -1em;
+		top: -1.5em;
 		left: -1em;
+		transform: translate(-50%, -50%) translateZ(-1em) rotateX(90deg);
+		transform-style: preserve-3d;
 
-		.front,
-		.back,
-		.left,
-		.right {
+		background-color: red;
+
+		.side-front,
+		.side-back,
+		.side-left,
+		.side-right {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: $frame-height;
+			background-color: #fff;
+			box-shadow: 0 .1em .2em #000a inset;
+			opacity: .5;
+		}
+
+		.side-front {
+			transform: rotateZ(90deg * 0) rotateX(90deg) translateZ(calc(($frame-size - $frame-height / 2) * -1)) translateY(calc($frame-height / -2)) translateX(0);
+		}
+
+		.side-back {
+			transform: rotateZ(90deg * 0) rotateX(90deg) translateZ(calc($frame-height / 2)) translateY(calc($frame-height / -2)) translateX(0);
+		}
+
+		.side-left {
+			transform: rotateZ(90deg) rotateX(90deg) translateZ(calc($frame-size / 2)) translateY(calc($frame-height / -2)) translateX(calc($frame-size / 2 - $frame-height / 2));
+			border: .25em solid #fff;
+			background-color: rgba(54, 52, 54, 0.5);
+		}
+
+		.side-right {
+			transform: rotateZ(90deg) rotateX(90deg) translateZ(calc($frame-size / -2)) translateY(calc($frame-height / -2)) translateX(calc($frame-size / 2 - $frame-height / 2));
+		}
+
+		.side-top {
 			position: absolute;
 			width: 100%;
 			height: 100%;
-			background-color: #0b8ac17a;
-			box-shadow: 0 0 .5em #000a inset;
+
+			background-color: grey;
 		}
 
-		.front {
-			transform: translateZ(calc($cube-size / 2));
-		}
-
-		.back {
-			transform: rotateY(90deg * 2) translateZ(calc($cube-size / 2));
-		}
-
-		.left {
-			transform: rotateY(90deg * 3) translateZ(calc($cube-size / 2));
-		}
-
-		.right {
-			transform: rotateY(90deg) translateZ(calc($cube-size / 2));
-		}
-
-		.top {
-			box-shadow: 0 0 .5em #000a inset;
-			background-color: #0b8ac17a;
+		.side-bottom {
 			position: absolute;
-			overflow: hidden;
-			width: 2em;
-			height: 2em;
-			transform: translateY(-50%) rotateX(90deg);
-
-			&.animation {
-				animation: topOpen 8s linear infinite;
-
-				@keyframes topOpen {
-
-					0%,
-					100% {
-						transform: translateY(-50%) rotateX(90deg) translateX(0);
-					}
-
-					50% {
-						transform: translateY(-50%) rotateX(90deg) translateX(2em);
-					}
-				}
-			}
-
-		}
-
-		.bottom {
-			position: absolute;
-			width: 2em;
-			height: 2em;
+			width: 100%;
+			height: 100%;
 			bottom: 0;
-			background-color: #0007;
-			box-shadow: 0 0 .5em #000;
+			background-color: grey;
 
-			transform: translateY(50%) rotateX(90deg);
+			transform: translateZ(calc($frame-height * -1));
+		}
+	}
+
+	.leg {
+		width: $leg-size;
+		height: $leg-size;
+		position: absolute;
+		top: 0.5em;
+		left: -2.75em;
+		transform: translate(-50%, -50%) translateZ(.75em) rotateX(90deg);
+		transform-style: preserve-3d;
+
+		&--front {
+			&:nth-child(2) {
+				left: -2.75em;
+				transform: translate(-50%, -50%) translateZ(-1.25em) rotateX(90deg);
+			}
+		}
+		
+		// &:nth-child(3) {
+		// 	left: 0.75em;
+		// 	transform: translate(-50%, -50%) translateZ(-2.75em) rotateX(90deg);
+		// }
+		
+		// &:nth-child(5) {
+		// 	left: 1.75em;
+		// 	transform: translate(-50%, -50%) translateZ(.75em) rotateX(90deg);
+		// }
+		// &:nth-child(6) {
+		// 	left: 2.75em;
+		// 	transform: translate(-50%, -50%) translateZ(.75em) rotateX(90deg);
+		// }
+		// &:nth-child(7) {
+		// 	left: -0.25em;
+		// 	transform: translate(-50%, -50%) translateZ(.75em) rotateX(90deg);
+		// }
+
+		// &:nth-child(4) {
+		// 	left: 0.75em;
+		// 	transform: translate(-50%, -50%) translateZ(.75em) rotateX(90deg);
+		// }
+
+		.side-front,
+		.side-back,
+		.side-left,
+		.side-right {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: $leg-height;
+			background-color: red;
+			box-shadow: 0 .1em .2em #000a inset;
+		}
+
+		.side-front {
+			transform: rotateZ(90deg * 0) rotateX(90deg) translateZ(calc(($leg-size - $leg-height / 2) * -1)) translateY(calc($leg-height / -2)) translateX(0);
+		}
+
+		.side-back {
+			transform: rotateZ(90deg * 0) rotateX(90deg) translateZ(calc($leg-height / 2)) translateY(calc($leg-height / -2)) translateX(0);
+		}
+
+		.side-left {
+			transform: rotateZ(90deg) rotateX(90deg) translateZ(calc($leg-size / 2)) translateY(calc($leg-height / -2)) translateX(calc($leg-size / 2 - $leg-height / 2));
+		}
+
+		.side-right {
+			transform: rotateZ(90deg) rotateX(90deg) translateZ(calc($leg-size / -2)) translateY(calc($leg-height / -2)) translateX(calc($leg-size / 2 - $leg-height / 2));
+		}
+
+		.side-top {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+
+			background-image: repeating-linear-gradient(90deg, #4c4a42 0%, #000 2%, #000 2%, #4c4a42 4%, #4c4a42 25%);
+    		background-size: calc($leg-size / 6);
+		}
+
+		.side-bottom {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			bottom: 0;
+			background-color: blue;
+
+			transform: translateZ(calc($leg-height * -1));
 		}
 	}
 
 	.floor {
 		width: $floor-size;
 		height: $floor-size;
-
 		position: absolute;
 		top: 1em;
 		transform: translate(-50%, -50%) rotateX(90deg);
 		transform-style: preserve-3d;
+		opacity: .5;
 
 		.side-front,
 		.side-back,
