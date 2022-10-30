@@ -11,7 +11,7 @@ section.house
 	.wrap
 		.controls 
 			.title Press
-				br/ for moving
+				br/ for rotate
 			.key-box
 				.key(style='--i:0;').js-top-btn.hide-full
 				.key.hide-to-full W
@@ -29,62 +29,121 @@ section.house
 				.key.hide-to-full R
 		.scene.js-rotate
 			+figure-cube({
+				class: 'head'
+			})
+
+			+figure-cube({
 				class: 'frame'
 			})
-
-
 			//- front
 			+figure-cube({
-				class: 'leg leg--front'
+				class: 'leg front front--1'
 			})
 			+figure-cube({
-				class: 'leg leg--front'
+				class: 'leg front front--2'
 			})
 			+figure-cube({
-				class: 'leg leg--front'
+				class: 'leg front front--3'
 			})
 			+figure-cube({
-				class: 'leg leg--front'
-			})
-			//- right
-			+figure-cube({
-				class: 'leg'
-			})
-			+figure-cube({
-				class: 'leg'
-			})
-			+figure-cube({
-				class: 'leg'
-			})
-			+figure-cube({
-				class: 'leg'
+				class: 'leg front front--4'
 			})
 			//- back
 			+figure-cube({
-				class: 'leg'
+				class: 'leg back back--1'
 			})
 			+figure-cube({
-				class: 'leg'
+				class: 'leg back back--2'
 			})
 			+figure-cube({
-				class: 'leg'
+				class: 'leg back back--3'
 			})
 			+figure-cube({
-				class: 'leg'
+				class: 'leg back back--4'
+			})
+		
+			//- left
+			+figure-cube({
+				class: 'leg left left--1'
+			})
+			+figure-cube({
+				class: 'leg left left--2'
+			})
+			//- right
+			+figure-cube({
+				class: 'leg right right--1'
+			})
+			+figure-cube({
+				class: 'leg right right--2'
+			})
+
+			//- border
+			//- front
+			+figure-cube({
+				class: 'border front front--1'
+			})
+			+figure-cube({
+				class: 'border front front--2'
+			})
+			+figure-cube({
+				class: 'border front front--3'
+			})
+			+figure-cube({
+				class: 'border front front--4'
+			})
+			+figure-cube({
+				class: 'border front front--5'
+			})
+			//- back
+			+figure-cube({
+				class: 'border back back--1'
+			})
+			+figure-cube({
+				class: 'border back back--2'
+			})
+			+figure-cube({
+				class: 'border back back--3'
+			})
+			+figure-cube({
+				class: 'border back back--4'
+			})
+			+figure-cube({
+				class: 'border back back--5'
 			})
 			//- left
 			+figure-cube({
-				class: 'leg'
+				class: 'border left left--1'
 			})
 			+figure-cube({
-				class: 'leg'
+				class: 'border left left--2'
 			})
 			+figure-cube({
-				class: 'leg'
+				class: 'border left left--3'
+			})
+		
+			//- right
+			+figure-cube({
+				class: 'border right right--1'
 			})
 			+figure-cube({
-				class: 'leg'
+				class: 'border right right--2'
 			})
+			+figure-cube({
+				class: 'border right right--3'
+			})
+
+			//- border-sides
+			+figure-cube({
+				class: 'border-side border-side--top'
+			})
+			+figure-cube({
+				class: 'border-side border-side--center'
+			})
+			+figure-cube({
+				class: 'border-side border-side--bottom'
+			})
+
+
 
 		
 		

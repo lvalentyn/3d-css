@@ -329,7 +329,7 @@ body {
   margin: 0;
   font-family: "Roboto", sans-serif;
   color: #fff;
-  background-color: #dedad3;
+  background-color: #aebbc7;
   overflow-x: hidden;
 }
 
@@ -433,6 +433,73 @@ body {
   transform: rotateY(-45deg) rotateX(-10deg) rotateZ(10deg);
   transition: transform 0.3s linear;
 }
+.house .head {
+  width: 4em;
+  height: 4em;
+  position: absolute;
+  top: calc(-1.5em + 1px);
+  left: -1em;
+  transform: translate(-50%, -50%) translateZ(-1em) rotateX(90deg);
+  transform-style: preserve-3d;
+}
+.house .head .side-front,
+.house .head .side-back,
+.house .head .side-left,
+.house .head .side-right,
+.house .head .side-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0.2666666667em;
+  background-color: #ddd9d3;
+}
+.house .head .side-front {
+  transform: rotateZ(0deg) rotateX(90deg) translateZ(-3.6em) translateY(0.1333333333em) translateX(0);
+  box-shadow: 0em 0em 0.5em rgba(0, 0, 0, 0.6666666667) inset;
+  position: relative;
+  transform-style: preserve-3d;
+}
+.house .head .side-front:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100% + 1px);
+  background-color: #ddd9d3;
+  transform: translateZ(-0.1px);
+}
+.house .head .side-back {
+  transform: rotateZ(0deg) rotateX(90deg) translateZ(0.1333333333em) translateY(0.1333333333em) translateX(0);
+}
+.house .head .side-left {
+  transform: rotateZ(90deg) rotateX(90deg) translateZ(2em) translateY(0.1333333333em) translateX(1.8666666667em);
+  box-shadow: 0em 0em 0.5em rgba(0, 0, 0, 0.6666666667) inset;
+  position: relative;
+  transform-style: preserve-3d;
+}
+.house .head .side-left:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100% + 1px);
+  background-color: #ddd9d3;
+  transform: translateZ(0.1px);
+}
+.house .head .side-right {
+  transform: rotateZ(90deg) rotateX(90deg) translateZ(-2em) translateY(0.1333333333em) translateX(1.8666666667em);
+}
+.house .head .side-top {
+  transform: rotateZ(0deg) rotateX(90deg) translateZ(-2em) translateY(0.1333333333em) translateX(0);
+}
+.house .head .side-bottom {
+  display: none;
+}
 .house .frame {
   width: 4em;
   height: 4em;
@@ -441,7 +508,6 @@ body {
   left: -1em;
   transform: translate(-50%, -50%) translateZ(-1em) rotateX(90deg);
   transform-style: preserve-3d;
-  background-color: red;
 }
 .house .frame .side-front,
 .house .frame .side-back,
@@ -451,51 +517,192 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 2em;
-  background-color: #fff;
-  box-shadow: 0 0.1em 0.2em rgba(0, 0, 0, 0.6666666667) inset;
-  opacity: 0.5;
+  height: 1.7777777778em;
+  background-color: #ddd9d3;
 }
 .house .frame .side-front {
-  transform: rotateZ(0deg) rotateX(90deg) translateZ(-3em) translateY(-1em) translateX(0);
+  transform: rotateZ(0deg) rotateX(90deg) translateZ(-3.1111111111em) translateY(-0.8888888889em) translateX(0);
 }
 .house .frame .side-back {
-  transform: rotateZ(0deg) rotateX(90deg) translateZ(1em) translateY(-1em) translateX(0);
+  transform: rotateZ(0deg) rotateX(90deg) translateZ(0.8888888889em) translateY(-0.8888888889em) translateX(0);
 }
 .house .frame .side-left {
-  transform: rotateZ(90deg) rotateX(90deg) translateZ(2em) translateY(-1em) translateX(1em);
-  border: 0.25em solid #fff;
+  transform: rotateZ(90deg) rotateX(90deg) translateZ(2em) translateY(-0.8888888889em) translateX(1.1111111111em);
+  border: 0.25em solid #ddd9d3;
+  border-bottom: none;
   background-color: rgba(54, 52, 54, 0.5);
 }
 .house .frame .side-right {
-  transform: rotateZ(90deg) rotateX(90deg) translateZ(-2em) translateY(-1em) translateX(1em);
+  transform: rotateZ(90deg) rotateX(90deg) translateZ(-2em) translateY(-0.8888888889em) translateX(1.1111111111em);
 }
 .house .frame .side-top {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: grey;
+  background-color: #ece9e5;
+  box-shadow: -0.15em -0.15em 0.25em rgba(0, 0, 0, 0.6666666667) inset;
 }
 .house .frame .side-bottom {
   position: absolute;
   width: 100%;
   height: 100%;
   bottom: 0;
-  background-color: grey;
-  transform: translateZ(-2em);
+  background-color: #5c5b59;
+  transform: translateZ(-1.7777777778em);
 }
 .house .leg {
   width: 0.25em;
   height: 0.25em;
   position: absolute;
-  top: 0.5em;
-  left: -2.75em;
-  transform: translate(-50%, -50%) translateZ(0.75em) rotateX(90deg);
+  top: 0.28em;
   transform-style: preserve-3d;
 }
-.house .leg--front:nth-child(2) {
+.house .leg.front {
+  transform: translate(-50%, -50%) translateZ(0.75em) rotateX(90deg);
+}
+.house .leg.front--1 {
   left: -2.75em;
-  transform: translate(-50%, -50%) translateZ(-1.25em) rotateX(90deg);
+}
+.house .leg.front--1 .side-front {
+  box-shadow: 0em -0.075em 0.04em rgba(0, 0, 0, 0.6666666667) inset;
+}
+.house .leg.front--1 .side-left {
+  box-shadow: 0.1em -0.1em 0.2em rgba(0, 0, 0, 0.6666666667) inset;
+}
+.house .leg.front--1 .side-back {
+  box-shadow: 0em -0.1em 0.2em rgba(0, 0, 0, 0.6666666667) inset;
+}
+.house .leg.front--1 .side-right {
+  box-shadow: 0em -0.1em 0.2em rgba(0, 0, 0, 0.6666666667) inset;
+}
+.house .leg.front--2 {
+  left: -1.8017241379em;
+}
+.house .leg.front--2 .side-left {
+  box-shadow: 0.1em -0.1em 0.2em rgba(0, 0, 0, 0.6666666667) inset;
+}
+.house .leg.front--2 .side-right {
+  box-shadow: 0.1em -0.1em 0.2em rgba(0, 0, 0, 0.6666666667) inset;
+}
+.house .leg.front--2 .side-back {
+  box-shadow: 0em -0.1em 0.2em rgba(0, 0, 0, 0.6666666667) inset;
+}
+.house .leg.front--2 .side-front {
+  box-shadow: 0em -0.075em 0.04em rgba(0, 0, 0, 0.6666666667) inset;
+}
+.house .leg.front--3 {
+  left: -0.25em;
+}
+.house .leg.front--3 .side-left {
+  box-shadow: 0.1em -0.1em 0.2em rgba(0, 0, 0, 0.6666666667) inset;
+}
+.house .leg.front--3 .side-right {
+  box-shadow: 0.1em -0.1em 0.2em rgba(0, 0, 0, 0.6666666667) inset;
+}
+.house .leg.front--3 .side-back {
+  box-shadow: 0em -0.1em 0.2em rgba(0, 0, 0, 0.6666666667) inset;
+}
+.house .leg.front--3 .side-front {
+  box-shadow: 0em -0.075em 0.04em rgba(0, 0, 0, 0.6666666667) inset;
+}
+.house .leg.front--4 {
+  left: 0.75em;
+}
+.house .leg.front--4 .side-right {
+  box-shadow: 0.1em -0.1em 0.2em rgba(0, 0, 0, 0.6666666667) inset;
+}
+.house .leg.front--4 .side-back {
+  box-shadow: 0.1em -0.1em 0.2em rgba(0, 0, 0, 0.6666666667) inset;
+}
+.house .leg.front--4 .side-front {
+  box-shadow: 0em -0.075em 0.04em rgba(0, 0, 0, 0.6666666667) inset;
+}
+.house .leg.front--4 .side-left {
+  box-shadow: 0em -0.075em 0.04em rgba(0, 0, 0, 0.6666666667) inset;
+}
+.house .leg.back {
+  transform: translate(-50%, -50%) translateZ(-2.75em) rotateX(90deg);
+}
+.house .leg.back--1 {
+  left: -2.75em;
+}
+.house .leg.back--1 > * {
+  box-shadow: 0em -0.1em 0.2em rgba(0, 0, 0, 0.6666666667) inset;
+}
+.house .leg.back--2 {
+  left: -1.8017241379em;
+}
+.house .leg.back--2 > * {
+  box-shadow: 0em -0.1em 0.2em rgba(0, 0, 0, 0.6666666667) inset;
+}
+.house .leg.back--3 {
+  left: -0.25em;
+}
+.house .leg.back--3 > * {
+  box-shadow: 0em -0.1em 0.2em rgba(0, 0, 0, 0.6666666667) inset;
+}
+.house .leg.back--4 {
+  left: 0.75em;
+}
+.house .leg.back--4 .side-front {
+  box-shadow: 0.1em -0.1em 0.2em rgba(0, 0, 0, 0.6666666667) inset;
+}
+.house .leg.back--4 .side-back {
+  box-shadow: 0em -0.1em 0.2em rgba(0, 0, 0, 0.6666666667) inset;
+}
+.house .leg.back--4 .side-right {
+  box-shadow: 0em -0.1em 0.2em rgba(0, 0, 0, 0.6666666667) inset;
+}
+.house .leg.back--4 .side-left {
+  box-shadow: 0em -0.075em 0.04em rgba(0, 0, 0, 0.6666666667) inset;
+}
+.house .leg.left {
+  left: 0.75em;
+}
+.house .leg.left--1 {
+  transform: translate(-50%, -50%) translateZ(-0.25em) rotateX(90deg);
+}
+.house .leg.left--1 .side-left {
+  box-shadow: 0em -0.075em 0.04em rgba(0, 0, 0, 0.6666666667) inset;
+}
+.house .leg.left--1 .side-front {
+  box-shadow: 0.1em -0.1em 0.2em rgba(0, 0, 0, 0.6666666667) inset;
+}
+.house .leg.left--1 .side-back {
+  box-shadow: 0em -0.1em 0.2em rgba(0, 0, 0, 0.6666666667) inset;
+}
+.house .leg.left--1 .side-right {
+  box-shadow: 0em -0.1em 0.2em rgba(0, 0, 0, 0.6666666667) inset;
+}
+.house .leg.left--2 {
+  transform: translate(-50%, -50%) translateZ(-1.75em) rotateX(90deg);
+}
+.house .leg.left--2 .side-front {
+  box-shadow: 0.1em -0.1em 0.2em rgba(0, 0, 0, 0.6666666667) inset;
+}
+.house .leg.left--2 .side-back {
+  box-shadow: 0em -0.1em 0.2em rgba(0, 0, 0, 0.6666666667) inset;
+}
+.house .leg.left--2 .side-right {
+  box-shadow: 0em -0.1em 0.2em rgba(0, 0, 0, 0.6666666667) inset;
+}
+.house .leg.left--2 .side-left {
+  box-shadow: 0em -0.075em 0.04em rgba(0, 0, 0, 0.6666666667) inset;
+}
+.house .leg.right {
+  left: -2.75em;
+}
+.house .leg.right--1 {
+  transform: translate(-50%, -50%) translateZ(-0.25em) rotateX(90deg);
+}
+.house .leg.right--1 > * {
+  box-shadow: 0em -0.1em 0.2em rgba(0, 0, 0, 0.6666666667) inset;
+}
+.house .leg.right--2 {
+  transform: translate(-50%, -50%) translateZ(-1.75em) rotateX(90deg);
+}
+.house .leg.right--2 > * {
+  box-shadow: 0em -0.1em 0.2em rgba(0, 0, 0, 0.6666666667) inset;
 }
 .house .leg .side-front,
 .house .leg .side-back,
@@ -505,21 +712,20 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 0.5em;
-  background-color: red;
-  box-shadow: 0 0.1em 0.2em rgba(0, 0, 0, 0.6666666667) inset;
+  height: 0.7619047619em;
+  background-color: #ddd9d3;
 }
 .house .leg .side-front {
-  transform: rotateZ(0deg) rotateX(90deg) translateZ(0em) translateY(-0.25em) translateX(0);
+  transform: rotateZ(0deg) rotateX(90deg) translateZ(0.130952381em) translateY(-0.380952381em) translateX(0);
 }
 .house .leg .side-back {
-  transform: rotateZ(0deg) rotateX(90deg) translateZ(0.25em) translateY(-0.25em) translateX(0);
+  transform: rotateZ(0deg) rotateX(90deg) translateZ(0.380952381em) translateY(-0.380952381em) translateX(0);
 }
 .house .leg .side-left {
-  transform: rotateZ(90deg) rotateX(90deg) translateZ(0.125em) translateY(-0.25em) translateX(-0.125em);
+  transform: rotateZ(90deg) rotateX(90deg) translateZ(0.125em) translateY(-0.380952381em) translateX(-0.255952381em);
 }
 .house .leg .side-right {
-  transform: rotateZ(90deg) rotateX(90deg) translateZ(-0.125em) translateY(-0.25em) translateX(-0.125em);
+  transform: rotateZ(90deg) rotateX(90deg) translateZ(-0.125em) translateY(-0.380952381em) translateX(-0.255952381em);
 }
 .house .leg .side-top {
   position: absolute;
@@ -534,7 +740,167 @@ body {
   height: 100%;
   bottom: 0;
   background-color: blue;
-  transform: translateZ(-0.5em);
+  transform: translateZ(-0.7619047619em);
+}
+.house .border {
+  width: 0.05em;
+  height: 0.05em;
+  position: absolute;
+  top: 0.6em;
+  transform-style: preserve-3d;
+}
+.house .border.front {
+  transform: translate(-50%, -50%) translateZ(2.97em) rotateX(90deg);
+}
+.house .border.front--1 {
+  left: -2.97em;
+}
+.house .border.front--2 {
+  left: -1.5em;
+}
+.house .border.front--3 {
+  left: 0.15em;
+}
+.house .border.front--4 {
+  left: 1.6em;
+}
+.house .border.front--5 {
+  left: 2.97em;
+}
+.house .border.back {
+  transform: translate(-50%, -50%) translateZ(-2.97em) rotateX(90deg);
+}
+.house .border.back--1 {
+  left: -2.97em;
+}
+.house .border.back--2 {
+  left: -1.5em;
+}
+.house .border.back--3 {
+  left: 0.15em;
+}
+.house .border.back--4 {
+  left: 1.6em;
+}
+.house .border.back--5 {
+  left: 2.97em;
+}
+.house .border.left {
+  left: 2.97em;
+}
+.house .border.left--1 {
+  transform: translate(-50%, -50%) translateZ(-1.3em) rotateX(90deg);
+}
+.house .border.left--2 {
+  transform: translate(-50%, -50%) translateZ(0.15em) rotateX(90deg);
+}
+.house .border.left--3 {
+  transform: translate(-50%, -50%) translateZ(1.6em) rotateX(90deg);
+}
+.house .border.right {
+  left: -2.97em;
+}
+.house .border.right--1 {
+  transform: translate(-50%, -50%) translateZ(-1.3em) rotateX(90deg);
+}
+.house .border.right--2 {
+  transform: translate(-50%, -50%) translateZ(0.15em) rotateX(90deg);
+}
+.house .border.right--3 {
+  transform: translate(-50%, -50%) translateZ(1.6em) rotateX(90deg);
+}
+.house .border .side-front,
+.house .border .side-back,
+.house .border .side-left,
+.house .border .side-right {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0.4em;
+  background-color: grey;
+}
+.house .border .side-front {
+  transform: rotateZ(0deg) rotateX(90deg) translateZ(0.15em) translateY(-0.2em) translateX(0);
+}
+.house .border .side-back {
+  transform: rotateZ(0deg) rotateX(90deg) translateZ(0.2em) translateY(-0.2em) translateX(0);
+}
+.house .border .side-left {
+  transform: rotateZ(90deg) rotateX(90deg) translateZ(0.025em) translateY(-0.2em) translateX(-0.175em);
+}
+.house .border .side-right {
+  transform: rotateZ(90deg) rotateX(90deg) translateZ(-0.025em) translateY(-0.2em) translateX(-0.175em);
+}
+.house .border .side-top {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: repeating-linear-gradient(90deg, #4c4a42 0%, #000 2%, #000 2%, #4c4a42 4%, #4c4a42 25%);
+  background-size: 0.0083333333em;
+}
+.house .border .side-bottom {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  background-color: blue;
+  transform: translateZ(-0.4em);
+}
+.house .border-side {
+  width: 6em;
+  height: 6em;
+  position: absolute;
+  top: 0.65em;
+  transform: translate(-50%, -50%) rotateX(90deg);
+  transform-style: preserve-3d;
+}
+.house .border-side--center {
+  top: 0.75em;
+}
+.house .border-side--bottom {
+  top: 0.85em;
+}
+.house .border-side .side-top {
+  position: relative;
+}
+.house .border-side .side-top::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3.75em;
+  height: 3.75em;
+  background: #000;
+  filter: blur(15px);
+  opacity: 0.75;
+}
+.house .border-side .side-front,
+.house .border-side .side-back,
+.house .border-side .side-left,
+.house .border-side .side-right {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0.04em;
+  background-color: grey;
+}
+.house .border-side .side-front {
+  transform: rotateZ(0deg) rotateX(90deg) translateZ(-5.98em) translateY(0.02em) translateX(0);
+}
+.house .border-side .side-back {
+  transform: rotateZ(0deg) rotateX(90deg) translateZ(0.02em) translateY(0.02em) translateX(0);
+}
+.house .border-side .side-left {
+  transform: rotateZ(90deg) rotateX(90deg) translateZ(3em) translateY(0.02em) translateX(2.98em);
+}
+.house .border-side .side-right {
+  transform: rotateZ(90deg) rotateX(90deg) translateZ(-3em) translateY(0.02em) translateX(2.98em);
+}
+.house .border-side .side-top, .house .border-side .side-bottom {
+  display: none;
 }
 .house .floor {
   width: 6em;
@@ -543,7 +909,21 @@ body {
   top: 1em;
   transform: translate(-50%, -50%) rotateX(90deg);
   transform-style: preserve-3d;
-  opacity: 0.5;
+}
+.house .floor .side-top {
+  position: relative;
+}
+.house .floor .side-top::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3.75em;
+  height: 3.75em;
+  background: #000;
+  filter: blur(15px);
+  opacity: 0.75;
 }
 .house .floor .side-front,
 .house .floor .side-back,
