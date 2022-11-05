@@ -4,6 +4,10 @@ $cube-size: 2em;
 $rotate-speed: 40s;
 
 
+$flue-size: 2em;
+$flue-height: calc($flue-size / 10);
+
+
 $head-size: 4em;
 $head-height: calc($head-size / 15);
 
@@ -71,7 +75,86 @@ $floor-height: calc($floor-size / 24);
 		position: relative;
 		transform-style: preserve-3d;
 		transform: rotateY(-45deg) rotateX(-10deg) rotateZ(10deg);
-		transition: transform .3s linear;
+		// transition: transform .1s linear;
+	}
+
+	.flue {
+		width: $flue-size;
+		height: $flue-size;
+
+		position: absolute;
+		top: calc(-1.5em + 1px);
+		left: -1em;
+		transform: translate(-50%, -50%) translateZ(-1em) rotateX(90deg);
+		transform-style: preserve-3d;
+
+		.side-front,
+		.side-back,
+		.side-left,
+		.side-right,
+		.side-top {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: $flue-height;
+			background-image: linear-gradient(to right, #8B939A, #5B6467);
+		}
+
+		.side-front {
+			transform: rotateZ(90deg * 0) rotateX(90deg) translateZ(-3.60em) translateY(calc($flue-height / 2)) translateX(0);
+			box-shadow: 0em 0em .5em #000a inset;
+
+			position: relative;
+			transform-style: preserve-3d;
+
+			&:before {
+				content: '';
+				display: block;
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: calc(100% + 1px);
+				background-image: linear-gradient(to right, #8B939A, #5B6467);
+				transform: translateZ(-.1px);
+			}
+		}
+
+		.side-back {
+			transform: rotateZ(90deg * 0) rotateX(90deg) translateZ(calc($flue-height / 2)) translateY(calc($flue-height / 2)) translateX(0);
+		}
+
+		.side-left {
+			transform: rotateZ(90deg) rotateX(90deg) translateZ(calc($flue-size / 2)) translateY(calc($flue-height / 2)) translateX(calc($flue-size / 2 - $flue-height / 2));
+			box-shadow: 0em 0em .5em #000a inset;
+
+			position: relative;
+			transform-style: preserve-3d;
+
+			&:before {
+				content: '';
+				display: block;
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: calc(100% + 1px);
+				background-image: linear-gradient(to right, #8B939A, #5B6467);
+				transform: translateZ(.1px);
+			}
+		}
+
+		.side-right {
+			transform: rotateZ(90deg) rotateX(90deg) translateZ(calc($head-size / -2)) translateY(calc($head-height / 2)) translateX(calc($head-size / 2 - $head-height / 2));
+		}
+
+		.side-top {
+			transform: rotateZ(90deg * 0) rotateX(90deg) translateZ(calc($head-size / -2)) translateY(calc($head-height / 2)) translateX(0);
+		}
+		.side-bottom {
+			display: none;
+		}
 	}
 
 	.head {
@@ -597,6 +680,7 @@ $floor-height: calc($floor-size / 24);
 		&--center {
 			top: .75em;
 		}
+		
 		&--bottom {
 			top: .85em;
 		}
