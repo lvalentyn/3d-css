@@ -47,20 +47,32 @@ window.addEventListener('DOMContentLoaded', () => {
 
     function objectRotate(e) {
         if (startPosX < e.clientX) {
+            if (axiosY > 30) {
+                axiosY = 30
+            }
             startPosX = e.clientX
             axiosY++
         }
         if (startPosX > e.clientX) {
+            if (axiosY < -120) {
+                axiosY = -120
+            }
             startPosX = e.clientX
             axiosY--
         }
         scene.style.transform = `rotateY(${axiosY}deg) rotateX(${axiosX}deg)`
 
         if (startPosY > e.clientY) {
+            if (axiosX > 30) {
+                axiosX = 30
+            }
             startPosY = e.clientY
             axiosX++
         }
         if (startPosY < e.clientY) {
+            if (axiosX < -100) {
+                axiosX = -100
+            }
             startPosY = e.clientY
             axiosX--
         }
@@ -68,10 +80,10 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     function objectZoom(e) {
-        if (0 > e.deltaY) {
+        if (0 < e.deltaY && fontSize > 2) {
             fontSize--
         }
-        if (0 < e.deltaY) {
+        if (0 > e.deltaY && fontSize < 12) {
             fontSize++
         }
 
