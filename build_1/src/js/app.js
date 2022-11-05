@@ -51,14 +51,14 @@ window.addEventListener('DOMContentLoaded', () => {
                 axiosY = 30
             }
             startPosX = e.clientX
-            axiosY++
+            axiosY += 5
         }
         if (startPosX > e.clientX) {
             if (axiosY < -120) {
                 axiosY = -120
             }
             startPosX = e.clientX
-            axiosY--
+            axiosY -= 5
         }
         scene.style.transform = `rotateY(${axiosY}deg) rotateX(${axiosX}deg)`
 
@@ -67,14 +67,14 @@ window.addEventListener('DOMContentLoaded', () => {
                 axiosX = 30
             }
             startPosY = e.clientY
-            axiosX++
+            axiosX += 5
         }
         if (startPosY < e.clientY) {
             if (axiosX < -100) {
                 axiosX = -100
             }
             startPosY = e.clientY
-            axiosX--
+            axiosX -= 5
         }
         scene.style.transform = `rotateY(${axiosY}deg) rotateX(${axiosX}deg)`
     }
