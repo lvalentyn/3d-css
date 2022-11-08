@@ -105,6 +105,7 @@ window.addEventListener('DOMContentLoaded', () => {
             objectRotate(e)
         }
     })
+
     document.addEventListener('wheel', (e) => {
         objectZoom(e)
     })

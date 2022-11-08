@@ -2,10 +2,26 @@ mixin figure-cube(props={})
 	.figure--cube(class=`${props.class ? props.class : ''}`)
 		.side-top
 		.side-right
+			if props.windowLeft
+				.window
+					- for(i=0;i<20;i++)
+						span
 		.side-bottom
 		.side-left
+			if props.windowLeft
+				.window
+					- for(i=0;i<20;i++)
+						span
 		.side-front
+			if props.windowFront
+				.window
+					- for(i=0;i<50;i++)
+						span
 		.side-back
+			if props.windowFront
+				.window
+					- for(i=0;i<50;i++)
+						span
 
 section.house
 	.wrap
@@ -50,7 +66,9 @@ section.house
 			})
 
 			+figure-cube({
-				class: 'frame'
+				class: 'frame',
+				windowLeft: true,
+				windowFront: true,
 			})
 			//- front
 			+figure-cube({

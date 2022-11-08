@@ -478,11 +478,44 @@ $floor-height: calc($floor-size / 24);
 		}
 
 		.side-front {
-			transform: rotateZ(90deg * 0) rotateX(90deg) translateZ(calc(($frame-size - $frame-height / 2) * -1)) translateY(calc($frame-height / -2)) translateX(0);
+			transform: rotateY(180deg) rotateZ(90deg * 2) rotateX(90deg) translateZ(calc($frame-size - $frame-height / 2)) translateY(calc($frame-height / 2)) translateX(0);
+			border: .25em solid $build-color;
+			border-top: none;
+			background-color: rgba(54, 52, 54, 0.5);
+		}
+
+		.side-front ,.side-back {
+			& .window {
+				width: calc(100% + 2px);
+				height: calc(100% + 2px);
+				margin-left: -1px;
+				margin-top: -1px;
+				display: flex;
+				flex-wrap: wrap;
+
+				&>span {
+					flex: 0 0 auto;
+					background-color: $build-color;
+					width: calc(100% / 10);
+
+					&:nth-child(1),&:nth-child(2),&:nth-child(3),&:nth-child(4),&:nth-child(5),&:nth-child(6),&:nth-child(11),&:nth-child(12),&:nth-child(13),&:nth-child(14),&:nth-child(15),&:nth-child(16),&:nth-child(31),&:nth-child(32), &:nth-child(41),&:nth-child(42),&:nth-child(34),&:nth-child(35), &:nth-child(44),&:nth-child(45),&:nth-child(8),&:nth-child(9), &:nth-child(10), &:nth-child(28),&:nth-child(29), &:nth-child(30),&:nth-child(38),&:nth-child(39), &:nth-child(40),&:nth-child(48),&:nth-child(49), &:nth-child(50),&:nth-child(36), &:nth-child(46){
+						background-color: #27343dc4;
+						border: 2px solid #222;
+						box-shadow: inset -.1em -.1em .3em  #222;
+					}
+				}
+			} 
 		}
 
 		.side-back {
 			transform: rotateZ(90deg * 0) rotateX(90deg) translateZ(calc($frame-height / 2)) translateY(calc($frame-height / -2)) translateX(0);
+			border: .25em solid $build-color;
+			border-bottom: none;
+			background-color: rgba(54, 52, 54, 0.5);
+
+			& .window {
+				padding-bottom: 1px;
+			}
 		}
 
 		.side-left {
@@ -494,6 +527,24 @@ $floor-height: calc($floor-size / 24);
 
 		.side-right {
 			transform: rotateZ(90deg) rotateX(90deg) translateZ(calc($frame-size / -2)) translateY(calc($frame-height / -2)) translateX(calc($frame-size / 2 - $frame-height / 2));
+		}
+
+		.side-left, .side-right {
+			border: .25em solid $build-color;
+			border-bottom: none;
+			background-color: rgba(54, 52, 54, 0.5);
+			& .window {
+				height: 100%;
+				display: flex;
+				flex-wrap: wrap;
+
+				&>span {
+					width: calc(100% / 5);
+					background-color: #27343dc4;
+					border: 2px solid #222;
+					box-shadow: inset .1em .1em .3em  #222;
+				}
+			} 
 		}
 
 		.side-top {
